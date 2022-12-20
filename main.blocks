@@ -1,0 +1,18 @@
+<xml xmlns="https://developers.google.com/blockly/xml"><variables><variable id="Q3k:Xr|-L{eGuEk3eclN">beat</variable><variable id="+=Z]YTRE%5Xy.K7MQvBj">data</variable><variable id="zY-)[J0YNF8mKm:PpY}X">item</variable></variables><comment id="`bEquA9L?iCUy#R:NvvV" data="0" x="0" y="0" h="360" w="480">music js code to data converter:
+const code = ``.split('\n')
+
+const data = []
+for (let str of code) {
+const strArr = str.split('(')
+if (str.charAt(6) == 'p') {
+const freq = parseInt(strArr[1].split(',')[0]);
+const beatName = strArr[2].split('.')[1].slice(0, -2);
+data.push([freq, beatName])
+} else if (str.charAt(6) == "r") {
+const beatName = strArr[2].split('.')[1].slice(0, -2)
+data.push(beatName)
+}
+}
+
+const fs = require('fs');
+fs.writeFileSync("music-conv-out.txt", "const data = "+JSON.stringify(data))</comment><block type="function_definition" id="?_zR6n[/SK~E)e=~1%Y-" x="0" y="0"><mutation name="getBeat" functionid="zZs[Wb..6cmAF:l`/xrc"><arg name="name" id="bu5thkb4xtt7j1nl7hha" type="string"></arg></mutation><field name="function_name">getBeat</field></block></xml>
